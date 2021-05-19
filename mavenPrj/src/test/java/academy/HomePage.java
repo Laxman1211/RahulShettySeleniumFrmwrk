@@ -12,15 +12,17 @@ import pageObjects.LandingPageObjects;
 public class HomePage extends Base {
 	@Test
 	public void basePageNavigation() throws IOException {
-		System.out.println(" Test Method ..");
-		driver = initialise();
-		driver.get("http://www.testyou.in/Login.aspx");
+		System.out.println("Test Method Started..");
+		driver = initialiseDriver();
+		driver.get("http://www.qaclickacademy.com/");
+		
+		System.out.println("Test Method End..");
 
 		// 1. Inheritance
 		// 2. Creating Object to that class $ call its method
 
 		LandingPageObjects l = new LandingPageObjects(driver);
-		l.getLogin();
+		l.getLogin().click();
 	}
 
 	@BeforeMethod
@@ -29,7 +31,10 @@ public class HomePage extends Base {
 	}
 
 	@AfterMethod
-	public void term() {
-		System.out.println(" Termination..");
+	public void term() throws InterruptedException {
+		if(driver!= null)
+			Thread.sleep(5);
+			driver.close();
+		System.out.println("Browser Terminated..");
 	}
 }
